@@ -1,5 +1,13 @@
 
+	; %define _BOOT_DEBUG_ ; 	//制作boot sector时注释掉此行, 调试时要编译产生.com文件应去掉注释符号
+
+%ifdef _BOOT_DEBUG_
 	org 	0100h;		编译成一个.COM文件
+
+%else
+	org  	07c00h;		BIOS会把Boot Sector加载到0: 7C00处
+%endif
+
 	mov 	ax, cs;		把cs的值放到ax寄存器中
 	mov 	ds, ax;
 	mov 	es, ax;
