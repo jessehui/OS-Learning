@@ -46,8 +46,21 @@ JMP $，就是原地转移的意思，即 死循环。
 
 ### 调试
 在Windows下, 可以选择的调试方法包括把引导扇区的代码的`ORG 07c00h`改为`ORG 0100h`就可以编译成一个.COM文件在DOS下运行了. 
+调试环境: Bochs  
+Bochs（发音：box）是一个以GNU宽通用公共许可证发放的开放源代码的x86、x86-64IBM PC兼容机模拟器和调试工具。它支持处理器（包括保护模式），内存，硬盘，显示器，以太网，BIOS，IBM PC兼容机的常见硬件外设的仿真。    
+许多客户操作系统能通过该仿真器运行，包括DOS，Microsoft Windows的一些版本, AmigaOS 4, BSD, Linux, MorphOS, Xenix和Rhapsody (Mac OS X的前身).  Bochs能在许多主机操作系统运行，例如Windows, Windows Mobile, Linux, Mac OS X, iOS, PlayStation 2.  
+Bochs主要用于操作系统开发（当一个模拟操作系统崩溃，它不崩溃主机操作系统，所以可以调试仿真操作系统）和在主机操作系统运行其他来宾操作系统。它也可以用来运行不兼容的旧的软件（如电脑游戏）。  
+它的优点在于能够模拟跟主机不同的机种，例如在Sparc系统里模拟x86，但缺点是它的速度却慢得多。
+
+`bximage`: 生成虚拟软盘(floppy disk)或虚拟硬盘(hard disk)    
+`dd if=boot.bin of=a.img bs=512 count=1 conv=nontrunc   ; 将引导扇区写进软盘`  
+最后一个参数表示不裁剪,不截断(truncated). 使用真实软盘装载时不需要此参数, 因为真的不会被截断.
+然后再`a.img`所在目录下新建`bochsrc`配置文件, 然后在终端输入`bochs`即可运行. 如果运行黑屏则是调试模式, 终端输入`c`解决.
 
 
+
+### souce命令
+source命令也称为“点命令”，也就是一个点符号（.）。source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。
 
 
 
